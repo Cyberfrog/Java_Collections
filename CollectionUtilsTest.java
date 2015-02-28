@@ -2,9 +2,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.*;
 
-class IntUtil implements ListMapper<Integer>,ListFilter<Integer>{
-	public Integer map(Integer element){
-		return element *2;
+class IntUtil implements ListMapper<Integer,String>,ListFilter<Integer>{
+	public String map(Integer element){
+		return ""+(element *2);
 	}
 	public boolean filter(Integer element){
 		return element%2==0;
@@ -15,7 +15,7 @@ public class CollectionUtilsTest{
 	@Test
 	public void map_retuns_listOf_maped_element(){
 		IntUtil iu= new IntUtil();
-		Integer expected [] ={2,4,6,8,10};
+		String expected [] ={"2","4","6","8","10"};
 		List<Integer> list =new  ArrayList<Integer>();
 		list.add(1);
 		list.add(2);
@@ -23,7 +23,7 @@ public class CollectionUtilsTest{
 		list.add(4);
 		list.add(5);
 
-		List<Integer> mapList =CollectionUtils.<Integer>map(list,iu);
+		List<String> mapList =CollectionUtils.<Integer,String>map(list,iu);
 		assertEquals(mapList.toArray(),expected);
 		assertEquals(mapList.size(),list.size());
 

@@ -1,15 +1,15 @@
 import java.util.*;
-interface ListMapper<E> {
-	public E map(E element);
+interface ListMapper<E,K> {
+	public K map(E element);
 }
 interface ListFilter<E>{
 	public boolean filter(E element);
 }
 public class CollectionUtils{
-	public static <E> List<E> map(List<E> list, ListMapper<E> mapper){
-		List<E> newlist = new ArrayList<E>();
+	public static <E,K> List<K> map(List<E> list, ListMapper<E,K> mapper){
+		List<K> newlist = new ArrayList<K>();
 		for(E l :list){
-			E element = mapper.map(l);
+			K element = mapper.map(l);
 			newlist.add(element);
 		} 
 		return newlist;
