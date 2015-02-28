@@ -5,6 +5,9 @@ interface ListMapper<E,K> {
 interface ListFilter<E>{
 	public boolean check(E element);
 }
+interface ListReducer<E,K>{
+	public K compare(K previousVal,E currentVal);
+}
 public class CollectionUtils{
 	public static <E,K> List<K> map(List<E> list, ListMapper<E,K> mapper){
 		List<K> newlist = new ArrayList<K>();
@@ -22,5 +25,12 @@ public class CollectionUtils{
 			}
 		} 
 		return newlist;
+	}
+	public static <E,K> K reduce(List<E> list, ListReducer<E,K> reducer, K initial){
+		K pv =initial;
+		for(E l :list){
+			pv = reducer.compare(pv,l);
+		} 
+		return pv;
 	}
 }
