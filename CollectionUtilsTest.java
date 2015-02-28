@@ -6,7 +6,7 @@ class IntUtil implements ListMapper<Integer,String>,ListFilter<Integer>{
 	public String map(Integer element){
 		return ""+(element *2);
 	}
-	public boolean filter(Integer element){
+	public boolean check(Integer element){
 		return element%2==0;
 	}
 
